@@ -1,10 +1,11 @@
 import { SourceNodesArgs, NodeInput } from 'gatsby'
 import { CountrySummaryResponse } from '../api-client/types'
 import { ResolverContext } from './types'
+import { ISO2CountryCode, ISO8601Timestamp } from '../types'
 
 export interface CountrySummaryNode extends NodeInput {
-  lastUpdate: string
-  country: string
+  lastUpdate: ISO8601Timestamp
+  country: ISO2CountryCode
   confirmed: number
   deaths: number
   recovered: number
@@ -12,7 +13,7 @@ export interface CountrySummaryNode extends NodeInput {
 
 export function toCountrySummaryNode (
   kit: SourceNodesArgs,
-  iso2: string,
+  iso2: ISO2CountryCode,
   result: CountrySummaryResponse
 ): CountrySummaryNode {
   const node: CountrySummaryNode = {
