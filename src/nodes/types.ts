@@ -1,6 +1,12 @@
 import { SourceNodesArgs } from 'gatsby'
 import APIClient from '../api-client'
 
+export enum NodeTypes {
+  CountrySummary = 'Covid19CountrySummary',
+  GlobalSummary = 'Covid19GlobalSummary',
+  ProvinceStateDetail = 'Covid19ProvinceStateDetail'
+}
+
 interface CountryConfiguration {
   iso2: string
 }

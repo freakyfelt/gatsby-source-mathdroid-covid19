@@ -1,6 +1,6 @@
 {
   "name": "gatsby-source-mathdroid-covid19",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -12,6 +12,11 @@
     "gatsby",
     "gatsby-source",
     "covid19"
+  ],
+  "files": [
+    "gatsby-node.js",
+    "index.js",
+    "built"
   ],
   "author": "",
   "license": "MIT",

@@ -1,15 +1,14 @@
 import { SourceNodesArgs, NodeInput } from 'gatsby'
-import { ResolverContext } from './types'
+import { ResolverContext, NodeTypes } from './types'
 import { GlobalSummaryResponse } from '../api-client/global'
+import { ISO8601Timestamp, URLString } from '../types'
 
 export interface GlobalSummaryNode extends NodeInput {
-  lastUpdate: string
+  lastUpdate: ISO8601Timestamp
   confirmed: number
   deaths: number
   recovered: number
-  image: {
-    src: string
-  }
+  image: URLString
 }
 
 export function toGlobalSummaryNode (
@@ -22,12 +21,10 @@ export function toGlobalSummaryNode (
     confirmed: result.data.confirmed.value,
     deaths: result.data.deaths.value,
     recovered: result.data.recovered.value,
-    image: {
-      src: result.data.image
-    },
+    image: result.data.image,
 
     internal: {
-      type: 'Covid19GlobalSummary',
+      type: NodeTypes.GlobalSummary,
       contentDigest: ''
     }
   }
@@ -42,14 +39,17 @@ export default async function resolveGlobalNodes (ctx: ResolverContext): Promise
   const { actions: { createNode } } = nodeKit
 
   let result
+
   try {
     result = await apiClient.global.getSummary()
   } catch (e) {
     console.log(e)
   }
+
   if (!result) {
     return
   }
+
   const node = toGlobalSummaryNode(nodeKit, result)
 
   createNode(node)

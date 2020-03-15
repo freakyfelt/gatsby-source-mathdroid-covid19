@@ -2,7 +2,7 @@ import { SourceNodesArgs } from 'gatsby'
 import APIClient from './api-client'
 import resolveCountries from './nodes/countries'
 import resolveGlobal from './nodes/global'
-import resolveRegions from './nodes/regions'
+import resolveProvinceStateNodes from './nodes/provinces'
 import { Covid19PluginOptions, ResolverContext } from './nodes/types'
 
 export const sourceNodes = async (nodeKit: SourceNodesArgs, pluginOptions: Covid19PluginOptions): Promise<void> => {
@@ -16,7 +16,7 @@ export const sourceNodes = async (nodeKit: SourceNodesArgs, pluginOptions: Covid
     pluginOptions
   }
 
-  await resolveRegions(ctx)
+  await resolveProvinceStateNodes(ctx)
   await resolveGlobal(ctx)
   await resolveCountries(ctx)
 }

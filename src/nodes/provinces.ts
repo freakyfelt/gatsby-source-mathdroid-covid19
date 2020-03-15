@@ -1,8 +1,8 @@
 import { SourceNodesArgs, NodeInput } from 'gatsby'
-import { CountryRegionDetail } from '../api-client/types'
-import { ResolverContext } from './types'
+import { ProvinceStateDetail } from '../api-client/types'
+import { ResolverContext, NodeTypes } from './types'
 
-export interface RegionSummaryNode extends NodeInput {
+export interface ProvinceStateDetailNode extends NodeInput {
   provinceState: string | null
   countryRegion: string | null
   iso2: string
@@ -17,10 +17,10 @@ export interface RegionSummaryNode extends NodeInput {
   recovered: number
 }
 
-export function toRegionDetailNode (
+export function toProvinceStateNode (
   kit: SourceNodesArgs,
-  result: CountryRegionDetail
-): RegionSummaryNode {
+  result: ProvinceStateDetail
+): ProvinceStateDetailNode {
   const {
     provinceState,
     countryRegion,
@@ -35,7 +35,7 @@ export function toRegionDetailNode (
     deaths
   } = result
 
-  const node: RegionSummaryNode = {
+  const node: ProvinceStateDetailNode = {
     id: kit.createNodeId([result.iso2, result.provinceState, 'detail'].join('-')),
     iso2,
     iso3,
@@ -50,7 +50,7 @@ export function toRegionDetailNode (
     deaths,
     recovered,
     internal: {
-      type: 'Covid19RegionDetail',
+      type: NodeTypes.ProvinceStateDetail,
       contentDigest: ''
     }
   }
@@ -60,7 +60,7 @@ export function toRegionDetailNode (
   return node
 }
 
-export default async function resolveRegionNodes (ctx: ResolverContext): Promise<void> {
+export default async function resolveProvinceStateNodes (ctx: ResolverContext): Promise<void> {
   const { apiClient, nodeKit } = ctx
   const { actions: { createNode } } = nodeKit
 
@@ -76,7 +76,7 @@ export default async function resolveRegionNodes (ctx: ResolverContext): Promise
   }
 
   result.data.forEach((entry) => {
-    const node = toRegionDetailNode(nodeKit, entry)
+    const node = toProvinceStateNode(nodeKit, entry)
 
     createNode(node)
   })
