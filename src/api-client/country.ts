@@ -4,11 +4,11 @@ import {
   CountryRegionDetail,
   CountrySummaryResponse,
   ISO2CountryCode,
-  ISO3CountryCode,
+  ISO3CountryCode
 } from './types'
 
-export type CountryRegionDetailResponse = { data: CountryRegionDetail[] }
-export type ListAllCountriesResponse = {
+export interface CountryRegionDetailResponse { data: CountryRegionDetail[] }
+export interface ListAllCountriesResponse {
   data: {
     countries: Record<string, ISO2CountryCode>
     iso3: Record<ISO2CountryCode, ISO3CountryCode>
@@ -16,15 +16,15 @@ export type ListAllCountriesResponse = {
 }
 
 export default class CountryStore {
-  constructor(private client: Pick<AxiosInstance, 'get'>) {}
+  constructor (private readonly client: Pick<AxiosInstance, 'get'>) {}
 
-  async listAllCountries(): Promise<ListAllCountriesResponse> {
-    const url = `/api/countries`
+  async listAllCountries (): Promise<ListAllCountriesResponse> {
+    const url = '/api/countries'
 
     return this.client.get(url)
   }
 
-  async getSummary(
+  async getSummary (
     input: CountryDetailRequest
   ): Promise<CountrySummaryResponse> {
     const url = `/api/countries/${input.country}`
@@ -36,7 +36,7 @@ export default class CountryStore {
    * Cases per region in the provided country sorted by confirmed cases
    * @param input
    */
-  async getConfirmed(input: CountryDetailRequest): Promise<CountryRegionDetailResponse> {
+  async getConfirmed (input: CountryDetailRequest): Promise<CountryRegionDetailResponse> {
     const url = `/api/countries/${input.country}/confirmed`
 
     return this.client.get(url)
@@ -46,7 +46,7 @@ export default class CountryStore {
    * Cases per region in the provided country sorted by death toll
    * @param input
    */
-  async getDeaths(input: CountryDetailRequest): Promise<CountryRegionDetailResponse> {
+  async getDeaths (input: CountryDetailRequest): Promise<CountryRegionDetailResponse> {
     const url = `/api/countries/${input.country}/confirmed`
 
     return this.client.get(url)
@@ -56,7 +56,7 @@ export default class CountryStore {
    * Cases per region in the provided country sorted by recovered cases
    * @param input
    */
-  async getRecovered(input: CountryDetailRequest): Promise<CountryRegionDetailResponse> {
+  async getRecovered (input: CountryDetailRequest): Promise<CountryRegionDetailResponse> {
     const url = `/api/countries/${input.country}/confirmed`
 
     return this.client.get(url)

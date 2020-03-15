@@ -17,11 +17,10 @@ export interface RegionSummaryNode extends NodeInput {
   recovered: number
 }
 
-export function toRegionDetailNode(
+export function toRegionDetailNode (
   kit: SourceNodesArgs,
   result: CountryRegionDetail
 ): RegionSummaryNode {
-
   const {
     provinceState,
     countryRegion,
@@ -52,8 +51,8 @@ export function toRegionDetailNode(
     recovered,
     internal: {
       type: 'Covid19RegionDetail',
-      contentDigest: '',
-    },
+      contentDigest: ''
+    }
   }
 
   node.internal.contentDigest = kit.createContentDigest(JSON.stringify(node))
@@ -61,7 +60,7 @@ export function toRegionDetailNode(
   return node
 }
 
-export default async function resolveRegionNodes(ctx: ResolverContext): Promise<void> {
+export default async function resolveRegionNodes (ctx: ResolverContext): Promise<void> {
   const { apiClient, nodeKit } = ctx
   const { actions: { createNode } } = nodeKit
 
@@ -80,5 +79,5 @@ export default async function resolveRegionNodes(ctx: ResolverContext): Promise<
     const node = toRegionDetailNode(nodeKit, entry)
 
     createNode(node)
-  });
+  })
 }

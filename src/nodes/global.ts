@@ -12,12 +12,12 @@ export interface GlobalSummaryNode extends NodeInput {
   }
 }
 
-export function toGlobalSummaryNode(
+export function toGlobalSummaryNode (
   kit: SourceNodesArgs,
   result: GlobalSummaryResponse
 ): GlobalSummaryNode {
   const node: GlobalSummaryNode = {
-    id: kit.createNodeId(`global-summary`),
+    id: kit.createNodeId('global-summary'),
     lastUpdate: result.data.lastUpdate,
     confirmed: result.data.confirmed.value,
     deaths: result.data.deaths.value,
@@ -28,8 +28,8 @@ export function toGlobalSummaryNode(
 
     internal: {
       type: 'Covid19GlobalSummary',
-      contentDigest: '',
-    },
+      contentDigest: ''
+    }
   }
 
   node.internal.contentDigest = kit.createContentDigest(JSON.stringify(node))
@@ -37,7 +37,7 @@ export function toGlobalSummaryNode(
   return node
 }
 
-export default async function resolveGlobalNodes(ctx: ResolverContext): Promise<void> {
+export default async function resolveGlobalNodes (ctx: ResolverContext): Promise<void> {
   const { apiClient, nodeKit } = ctx
   const { actions: { createNode } } = nodeKit
 

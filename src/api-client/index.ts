@@ -11,12 +11,12 @@ const DEFAULT_OPTIONS = {
 }
 
 export default class APIClient {
-  private httpClient: AxiosInstance
+  private readonly httpClient: AxiosInstance
   public countries: CountryStore
   public global: GlobalStore
 
-  constructor(opts: Partial<APIClientOptions> = {}) {
-    const baseURL = opts.baseURL || DEFAULT_OPTIONS.baseURL
+  constructor (opts: Partial<APIClientOptions> = {}) {
+    const baseURL = opts.baseURL ?? DEFAULT_OPTIONS.baseURL
 
     this.httpClient = Axios.create({ baseURL })
     this.countries = new CountryStore(this.httpClient)

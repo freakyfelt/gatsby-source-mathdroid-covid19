@@ -1,11 +1,11 @@
 import { AxiosInstance } from 'axios'
 import {
   CountryRegionDetail,
-  URLString,
   ISO8601Timestamp,
+  URLString
 } from './types'
 
-export type CountryRegionDetailResponse = { data: CountryRegionDetail[] }
+export interface CountryRegionDetailResponse { data: CountryRegionDetail[] }
 
 export interface GlobalSummaryResponse {
   data: {
@@ -38,10 +38,10 @@ export interface GlobalSummaryResponse {
 }
 
 export default class GlobalStore {
-  constructor(private client: Pick<AxiosInstance, 'get'>) {}
+  constructor (private readonly client: Pick<AxiosInstance, 'get'>) {}
 
-  async getSummary(): Promise<GlobalSummaryResponse> {
-    const url = `/api`;
+  async getSummary (): Promise<GlobalSummaryResponse> {
+    const url = '/api'
 
     return this.client.get(url)
   }
@@ -49,8 +49,8 @@ export default class GlobalStore {
   /**
    * Cases per region sorted by confirmed cases
    */
-  async getConfirmed(): Promise<CountryRegionDetailResponse> {
-    const url = `/api/confirmed`
+  async getConfirmed (): Promise<CountryRegionDetailResponse> {
+    const url = '/api/confirmed'
 
     return this.client.get(url)
   }
@@ -58,8 +58,8 @@ export default class GlobalStore {
   /**
    * Cases per region sorted by death toll
    */
-  async getDeaths(): Promise<CountryRegionDetailResponse> {
-    const url = `/api/confirmed`
+  async getDeaths (): Promise<CountryRegionDetailResponse> {
+    const url = '/api/confirmed'
 
     return this.client.get(url)
   }
@@ -67,8 +67,8 @@ export default class GlobalStore {
   /**
    * Cases per region sorted by recovered cases
    */
-  async getRecovered(): Promise<CountryRegionDetailResponse> {
-    const url = `/api/confirmed`
+  async getRecovered (): Promise<CountryRegionDetailResponse> {
+    const url = '/api/confirmed'
 
     return this.client.get(url)
   }

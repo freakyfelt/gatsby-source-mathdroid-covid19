@@ -10,7 +10,7 @@ export interface CountrySummaryNode extends NodeInput {
   recovered: number
 }
 
-export function toCountrySummaryNode(
+export function toCountrySummaryNode (
   kit: SourceNodesArgs,
   iso2: string,
   result: CountrySummaryResponse
@@ -24,8 +24,8 @@ export function toCountrySummaryNode(
     recovered: result.data.recovered.value,
     internal: {
       type: 'Covid19CountrySummary',
-      contentDigest: '',
-    },
+      contentDigest: ''
+    }
   }
 
   node.internal.contentDigest = kit.createContentDigest(JSON.stringify(node))
@@ -33,7 +33,7 @@ export function toCountrySummaryNode(
   return node
 }
 
-export default async function resolveCountryNodes(ctx: ResolverContext): Promise<void> {
+export default async function resolveCountryNodes (ctx: ResolverContext): Promise<void> {
   const { pluginOptions, apiClient, nodeKit } = ctx
   const { actions: { createNode } } = nodeKit
 
@@ -42,7 +42,7 @@ export default async function resolveCountryNodes(ctx: ResolverContext): Promise
     let result
     try {
       result = await apiClient.countries.getSummary({
-        country: iso2,
+        country: iso2
       })
     } catch (e) {
       console.log(e)

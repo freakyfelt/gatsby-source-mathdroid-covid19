@@ -5,9 +5,9 @@ import resolveGlobal from './nodes/global'
 import resolveRegions from './nodes/regions'
 import { Covid19PluginOptions, ResolverContext } from './nodes/types'
 
-export const sourceNodes = async (nodeKit: SourceNodesArgs, pluginOptions: Covid19PluginOptions) => {
+export const sourceNodes = async (nodeKit: SourceNodesArgs, pluginOptions: Covid19PluginOptions): Promise<void> => {
   const apiClient = new APIClient({
-    baseURL: pluginOptions.baseURL,
+    baseURL: pluginOptions.baseURL
   })
 
   const ctx: ResolverContext = {
