@@ -58,10 +58,10 @@ This plugin is still pretty barebones, so pull requests are more than welcome.
 
 Ways to help
 
-[] Get Jest up and running with some tests
-[] Dynamically fetch data from the Gatsby GraphQL queries?
-[] Make the Gatsby GraphQL nodes feel more native
-[] Nest related data structures in GraphQL
+- [ ] Get Jest up and running with some tests
+- [ ] Dynamically fetch data from the Gatsby GraphQL queries?
+- [ ] Make the Gatsby GraphQL nodes feel more native
+- [ ] Nest related data structures in GraphQL
 
 ## Supporting
 
