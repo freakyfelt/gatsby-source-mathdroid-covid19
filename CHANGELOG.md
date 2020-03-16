@@ -1,3 +1,6 @@
+## v0.2.0 2020-03-16 Add Daily Stats
+
+* feat: Expose the daily stats summary
 
 ## v0.1.0 2020-03-15 Initial Release
 
