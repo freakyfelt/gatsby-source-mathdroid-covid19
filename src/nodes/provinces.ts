@@ -1,6 +1,7 @@
 import { SourceNodesArgs, NodeInput } from 'gatsby'
 import { ProvinceStateDetail } from '../api-client/types'
 import { ResolverContext, NodeTypes } from './types'
+import { toProvinceID } from './util'
 
 export interface ProvinceStateDetailNode extends NodeInput {
   provinceState: string | null
@@ -35,8 +36,10 @@ export function toProvinceStateNode (
     deaths
   } = result
 
+  const provinceId = toProvinceID(result)
+
   const node: ProvinceStateDetailNode = {
-    id: kit.createNodeId([result.iso2, result.provinceState, 'detail'].join('-')),
+    id: kit.createNodeId(`detail-${provinceId}`),
     iso2,
     iso3,
     provinceState,
