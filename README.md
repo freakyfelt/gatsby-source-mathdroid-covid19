@@ -48,9 +48,20 @@ query MyQuery {
 }
 ```
 
+### Plugin Options
+
+See the Covid19PluginOptions type in src/nodes/types.ts
+
 ## Contributing
 
 This plugin is still pretty barebones, so pull requests are more than welcome.
+
+Ways to help
+
+[] Get Jest up and running with some tests
+[] Dynamically fetch data from the Gatsby GraphQL queries?
+[] Make the Gatsby GraphQL nodes feel more native
+[] Nest related data structures in GraphQL
 
 ## Supporting
 
