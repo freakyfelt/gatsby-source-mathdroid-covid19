@@ -13,7 +13,12 @@ module.exports = {
     {
       resolve: 'gatsby-source-mathdroid-covid19',
       options: {
-        countries: [{ iso2: 'DE' }],
+        countries: [{ iso2: 'DE' }], // fetch current stats for DE (Germany)
+        
+        // dailySummary: true /* enables global stats by day. defaults to false. */
+        daily: {
+          relativeDays: 14 // fetch 14 days worth of province-level data
+        }
       },
     }
   ]
