@@ -24,8 +24,12 @@ export default class CountryStore {
     return this.client.get(url)
   }
 
+  getImageURL (input: CountryRegionDetailRequest): string {
+    return `/api/countries/${input.country}`;
+  }
+
   async getSummary (input: CountryRegionDetailRequest): Promise<CountryRegionSummaryResponse> {
-    const url = `/api/countries/${input.country}`
+    const url = `/api/countries/${input.country}/og`
 
     return this.client.get(url)
   }
